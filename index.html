@@ -1,116 +1,356 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html>
+<!doctype html>
+<html lang="ru">
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <meta http-equiv="Content-Style-Type" content="text/css">
-  <title></title>
-  <meta name="Generator" content="Cocoa HTML Writer">
-  <meta name="CocoaVersion" content="2487.6">
-  <style type="text/css">
-    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px 'Helvetica Neue'; color: #0d121f; -webkit-text-stroke: #0d121f}
-    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 13.0px 'Helvetica Neue'; color: #1792e3; -webkit-text-stroke: #1792e3}
-    p.p3 {margin: 0.0px 0.0px 0.0px 0.0px; font: 13.0px 'Helvetica Neue'; color: #2a3140; -webkit-text-stroke: #2a3140; background-color: #c0cbda; min-height: 16.0px}
-    p.p5 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px 'Helvetica Neue'; color: #585e6d; -webkit-text-stroke: #585e6d}
-    p.p7 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px 'Helvetica Neue'; color: #0e0e0e; -webkit-text-stroke: #0e0e0e}
-    p.p8 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px 'Helvetica Neue'; color: #585e6d; -webkit-text-stroke: #585e6d; background-color: #ffffff}
-    p.p9 {margin: 0.0px 0.0px 0.0px 0.0px; font: 14.0px 'Helvetica Neue'; color: #0e0e0e; -webkit-text-stroke: #0e0e0e; background-color: #ffffff}
-    p.p10 {margin: 0.0px 0.0px 0.0px 0.0px; font: 14.0px Times; color: #0e0e0e; -webkit-text-stroke: #0e0e0e; background-color: #ffffff}
-    p.p11 {margin: 0.0px 0.0px 0.0px 0.0px; font: 14.0px 'Helvetica Neue'; color: #0e0e0e; -webkit-text-stroke: #0e0e0e; min-height: 17.0px}
-    p.p13 {margin: 0.0px 0.0px 0.0px 0.0px; font: 20.0px 'Helvetica Neue'; color: #0d121f; -webkit-text-stroke: #0d121f}
-    p.p14 {margin: 0.0px 0.0px 0.0px 0.0px; font: 11.0px 'Helvetica Neue'; color: #585e6d; -webkit-text-stroke: #585e6d}
-    p.p15 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px 'Helvetica Neue'; color: #0d121f; -webkit-text-stroke: #0d121f; min-height: 15.0px}
-    p.p16 {margin: 0.0px 0.0px 0.0px 0.0px; font: 13.0px 'Helvetica Neue'; color: #0d121f; -webkit-text-stroke: #0d121f; min-height: 16.0px}
-    p.p17 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px 'Helvetica Neue'; color: #2a3140; -webkit-text-stroke: #2a3140; background-color: #ffffff}
-    li.li18 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px 'Helvetica Neue'; color: #0d121f}
-    span.s1 {font-kerning: none}
-    span.s2 {font: 13.0px 'Helvetica Neue'; font-kerning: none; color: #1792e3; -webkit-text-stroke: 0px #1792e3}
-    span.s3 {font-kerning: none; background-color: #ffffff}
-    span.s4 {font: 14.0px Times; font-kerning: none}
-    span.s5 {font: 14.0px 'Helvetica Neue'; font-kerning: none}
-    span.s6 {font: 10.0px 'Helvetica Neue'; font-kerning: none}
-    ul.ul1 {list-style-type: disc}
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Предварительный расчет тепловых потерь</title>
+  <!-- Montserrat -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{--bg:#ffffff;--ink:#0f172a;--panel:#ffffff;--line:#e5e7eb;--muted:#6b7280;--accent:#F7931E}
+    *{box-sizing:border-box}
+    body{margin:0;background:var(--bg);color:var(--ink);font-family:Montserrat,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial}
+    a{color:#0ea5e9;text-decoration:none}
+    a:hover{text-decoration:underline}
+    .wrap{max-width:1100px;margin:12px auto;padding:0 12px}
+    .topbar{display:flex;align-items:center;gap:12px;margin:10px 0 6px}
+    .brand-img{height:40px}
+    .contacts{display:flex;flex-wrap:wrap;gap:10px;align-items:center;font-size:13px;color:#374151}
+    .contacts .dot{width:4px;height:4px;background:#cbd5e1;border-radius:50%}
+    .contacts a{display:inline-flex;align-items:center;gap:6px}
+    header{margin:24px 0 12px}
+    h1{font-size:18px;margin:0;font-weight:600}
+    .grid{display:grid;grid-template-columns:1fr;gap:12px;margin-top:12px}
+    @media(min-width:900px){.grid{grid-template-columns: 1.15fr 0.85fr}}
+    .card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px 14px 16px;margin-top:12px}
+    .card h2{font-size:15px;margin:4px 0 10px;color:#111;font-weight:600}
+    .row{display:grid;grid-template-columns:repeat(12,1fr);gap:8px}
+    .row>.col-6{grid-column:span 6}
+    .row>.col-4{grid-column:span 4}
+    .row>.col-3{grid-column:span 3}
+    .row>.col-2{grid-column:span 2}
+    .row>.col-8{grid-column:span 8}
+    .row+.row{margin-top:8px}
+    label{font-size:12px;color:var(--muted);display:block;margin-bottom:4px}
+    input,select{width:100%;padding:8px 10px;border-radius:8px;border:1px solid #d1d5db;background:#fff;color:#111;font-size:14px}
+    .hint{font-size:11px;color:#6b7280}
+    .kpi{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+    .kpi .item{background:#fff;border:1px solid var(--line);border-radius:12px;padding:10px}
+    .kpi .item h3{margin:0 0 6px;font-size:12px;color:#374151;font-weight:600}
+    .kpi .item .val{font-size:20px;font-weight:800}
+    .u-table{width:100%;border-collapse:separate;border-spacing:0 6px;font-size:13px}
+    .u-table td{padding:6px 8px;background:#fff;border:1px solid var(--line)}
+    .u-table tr td:first-child{border-radius:10px 0 0 10px;color:#111}
+    .u-table tr td:last-child{border-radius:0 10px 10px 0;text-align:right}
+    .rec{list-style:disc;padding-left:20px}
+    .badge{display:inline-block;font-size:12px;padding:4px 8px;border-radius:8px;border:1px solid var(--line);background:#fff;color:#111}
+    .notice{font-size:12px;line-height:1.5;background:#fff;border:1px dashed #cbd5e1;padding:8px;border-radius:10px;color:#374151}
   </style>
 </head>
 <body>
-<p class="p1"><span class="s1"><img src="file:///29830711.png" alt="29830711.png"></span></p>
-<p class="p2"><span class="s1"><a href="https://geotermo.com/">geotermo.com<span class="s2"></span></a></span></p>
-<p class="p3"><span class="s1"></span><br></p>
-<p class="p2"><span class="s1"><a href="https://t.me/geotermo">Telegram<span class="s2"></span></a></span></p>
-<p class="p3"><span class="s1"></span><br></p>
-<p class="p2"><span class="s1"><a href="https://youtube.com/@geotermo">YouTube<span class="s2"></span></a></span></p>
-<p class="p3"><span class="s1"></span><br></p>
-<p class="p2"><span class="s1"><a href="https://vk.com/geotermo_otoplenie">VK<span class="s2"></span></a></span></p>
-<p class="p3"><span class="s1"></span><br></p>
-<p class="p2"><span class="s1"><a href="https://rutube.ru/channel/38769955/">RuTube<span class="s2"></span></a></span></p>
-<p class="p3"><span class="s1"></span><br></p>
-<p class="p2"><span class="s1"><a href="https://tenchat.ru/geotermo">TenChat<span class="s2"></span></a></span></p>
-<h1 style="margin: 0.0px 0.0px 0.0px 0.0px; font: 18.0px 'Helvetica Neue'; color: #0d121f; -webkit-text-stroke: #0d121f"><span class="s1">Предварительный расчет тепловых потерь</span></h1>
-<p class="p5"><span class="s3">Номер заявки</span></p>
-<p class="p5"><span class="s3">Имя специалиста</span></p>
-<p class="p5"><span class="s3">Телефон специалиста</span></p>
-<p class="p5"><span class="s3">Дата</span></p>
-<h2 style="margin: 0.0px 0.0px 10.0px 0.0px; font: 15.0px 'Helvetica Neue'; color: #0e0e0e; -webkit-text-stroke: #0e0e0e"><span class="s3">1) Геометрия и температуры</span></h2>
-<p class="p5"><span class="s3">Длина L, м</span></p>
-<p class="p5"><span class="s3">Ширина W, м</span></p>
-<p class="p5"><span class="s3">Высота H, м</span></p>
-<p class="p7"><span class="s3">Площадь пола: — м²</span></p>
-<p class="p7"><span class="s3">Объём здания: — м³</span></p>
-<p class="p5"><span class="s3">Внутренняя температура, °C</span></p>
-<p class="p5"><span class="s3">Наружная температура, °C</span></p>
-<p class="p8"><span class="s1">Воздухообмен (вентиляция, ACH)</span></p>
-<p class="p9"><span class="s1"><span class="Apple-converted-space">              </span></span><span class="s4">Не учитывать</span></p>
-<p class="p10"><span class="s5"><span class="Apple-converted-space">              </span></span><span class="s1">0.5 1/ч — минимальный воздухообмен</span></p>
-<p class="p10"><span class="s5"><span class="Apple-converted-space">              </span></span><span class="s1">1.0 1/ч — стандарт</span></p>
-<p class="p10"><span class="s5"><span class="Apple-converted-space">              </span></span><span class="s1">1.5 1/ч — производственный</span></p>
-<p class="p10"><span class="s5"><span class="Apple-converted-space">              </span></span><span class="s1">3.0 1/ч — кухня, прачечная</span></p>
-<p class="p11"><span class="s3"><span class="Apple-converted-space">            </span></span></p>
-<p class="p8"><span class="s1">Инфильтрация (утечки через ограждения)</span></p>
-<p class="p9"><span class="s1"><span class="Apple-converted-space">              </span></span><span class="s4">Не учитывать</span></p>
-<p class="p10"><span class="s5"><span class="Apple-converted-space">              </span></span><span class="s1">0.2 м³/ч·м² ограждений (хорошая герметичность)</span></p>
-<p class="p10"><span class="s5"><span class="Apple-converted-space">              </span></span><span class="s1">0.5 м³/ч·м² (среднее качество)</span></p>
-<p class="p10"><span class="s5"><span class="Apple-converted-space">              </span></span><span class="s1">1.0 м³/ч·м² (низкая герметичность)</span></p>
-<p class="p11"><span class="s3"><span class="Apple-converted-space">            </span></span></p>
-<h2 style="margin: 0.0px 0.0px 10.0px 0.0px; font: 15.0px 'Helvetica Neue'; color: #0e0e0e; -webkit-text-stroke: #0e0e0e"><span class="s3">2) Материалы и слои (λ, Вт/м·К)</span></h2>
-<p class="p5"><span class="s3">Материал стен</span></p>
-<p class="p5"><span class="s3">Толщина стены, мм</span></p>
-<p class="p5"><span class="s3">+ утеплитель, мм</span></p>
-<p class="p5"><span class="s3">Материал кровли</span></p>
-<p class="p5"><span class="s3">Толщина кровли, мм</span></p>
-<p class="p5"><span class="s3">+ утеплитель, мм</span></p>
-<p class="p8"><span class="s1">Пол по грунту</span></p>
-<p class="p10"><span class="s5"><span class="Apple-converted-space">              </span></span><span class="s1">Бетон по грунту</span></p>
-<p class="p10"><span class="s5"><span class="Apple-converted-space">              </span></span><span class="s1">Плита ЖБ с утеплением</span></p>
-<p class="p10"><span class="s5"><span class="Apple-converted-space">              </span></span><span class="s1">Полы с утеплителем (EPS/PIR)</span></p>
-<p class="p9"><span class="s1"><span class="Apple-converted-space">              </span></span><span class="s4">Не учитывать</span></p>
-<p class="p11"><span class="s3"><span class="Apple-converted-space">            </span></span></p>
-<p class="p5"><span class="s3">Толщина пола, мм</span></p>
-<p class="p5"><span class="s3">+ утеплитель, мм</span></p>
-<p class="p8"><span class="s1">Окна (U, Вт/м²·К)</span></p>
-<p class="p9"><span class="s1"><span class="Apple-converted-space">              </span></span><span class="s4">Одинарное ~2.8</span></p>
-<p class="p10"><span class="s5"><span class="Apple-converted-space">              </span></span><span class="s1">Двойной пакет ~1.6</span></p>
-<p class="p9"><span class="s1"><span class="Apple-converted-space">              </span></span><span class="s4">Low-E ~1.1</span></p>
-<p class="p10"><span class="s5"><span class="Apple-converted-space">              </span></span><span class="s1">Энергоэффективный ~0.8</span></p>
-<p class="p11"><span class="s3"><span class="Apple-converted-space">            </span></span></p>
-<p class="p8"><span class="s1">Ворота (U, Вт/м²·К)</span></p>
-<p class="p10"><span class="s5"><span class="Apple-converted-space">              </span></span><span class="s1">Металлические ~2.5</span></p>
-<p class="p10"><span class="s5"><span class="Apple-converted-space">              </span></span><span class="s1">Секционные утеплённые ~1.5</span></p>
-<p class="p10"><span class="s5"><span class="Apple-converted-space">              </span></span><span class="s1">Энергоэффективные ~1.0</span></p>
-<p class="p11"><span class="s3"><span class="Apple-converted-space">            </span></span></p>
-<p class="p5"><span class="s3">Площадь окон, м²</span></p>
-<p class="p5"><span class="s3">Площадь ворот, м²</span></p>
-<h2 style="margin: 0.0px 0.0px 10.0px 0.0px; font: 15.0px 'Helvetica Neue'; color: #0e0e0e; -webkit-text-stroke: #0e0e0e"><span class="s3">3) Итоги</span></h2>
-<h3 style="margin: 0.0px 0.0px 6.0px 0.0px; font: 12.0px 'Helvetica Neue'; color: #2a3140; -webkit-text-stroke: #2a3140"><span class="s3">Общие теплопотери</span></h3>
-<p class="p13"><span class="s3">—</span></p>
-<p class="p14"><span class="s3">кВт при ΔT</span></p>
-<h3 style="margin: 0.0px 0.0px 6.0px 0.0px; font: 12.0px 'Helvetica Neue'; color: #2a3140; -webkit-text-stroke: #2a3140"><span class="s3">Удельные теплопотери</span></h3>
-<p class="p13"><span class="s3">—</span></p>
-<p class="p14"><span class="s3">Вт/м²</span></p>
-<p class="p15"><span class="s1"></span><br></p>
-<p class="p16"><span class="s1"></span><br></p>
-<p class="p17"><span class="s1">Формулы: Q = Σ(U·A·ΔT), U = 1/(Rsi+Σ(d/λ)+Rse). Вентиляция: Qvent=0.33·ACH·V·ΔT. Инфильтрация: Qinf=0.33·q·A</span><span class="s6"><sub>огр</sub></span><span class="s1">·ΔT.</span></p>
-<h2 style="margin: 0.0px 0.0px 10.0px 0.0px; font: 15.0px 'Helvetica Neue'; color: #0e0e0e; -webkit-text-stroke: #0e0e0e"><span class="s3">4) Рекомендации</span></h2>
-<ul class="ul1">
-  <li class="li18"></li>
-</ul>
+  <div class="wrap">
+    <div class="topbar screen-only">
+      <img class="brand-img" src="https://geotermo.com/img/29830711.png" alt="GEOTERMO logo" />
+      <div class="contacts">
+        <a href="https://geotermo.com" target="_blank" rel="noopener">geotermo.com</a>
+        <span class="dot"></span>
+        <a href="https://t.me/geotermo" target="_blank" rel="noopener">Telegram</a>
+        <span class="dot"></span>
+        <a href="https://youtube.com/@geotermo" target="_blank" rel="noopener">YouTube</a>
+        <span class="dot"></span>
+        <a href="https://vk.com/geotermo_otoplenie" target="_blank" rel="noopener">VK</a>
+        <span class="dot"></span>
+        <a href="https://rutube.ru/channel/38769955/" target="_blank" rel="noopener">RuTube</a>
+        <span class="dot"></span>
+        <a href="https://tenchat.ru/geotermo" target="_blank" rel="noopener">TenChat</a>
+      </div>
+    </div>
+
+    <header class="screen-only">
+      <h1>Предварительный расчет тепловых потерь</h1>
+    </header>
+
+    <!-- Карточка с реквизитами заявки -->
+    <section class="card screen-only">
+      <div class="row">
+        <div class="col-3"><label>Номер заявки</label><input type="number" id="dealId" placeholder="например, 10234" min="0"></div>
+        <div class="col-3"><label>Имя специалиста</label><input type="text" id="specName" placeholder="ФИО инженера"></div>
+        <div class="col-3"><label>Телефон специалиста</label><input type="tel" id="specPhone" placeholder="+7 9XX XXX-XX-XX"></div>
+        <div class="col-3"><label>Дата</label><input type="date" id="dealDate"></div>
+      </div>
+    </section>
+
+    <div class="grid screen-only">
+      <section class="card">
+        <h2>1) Геометрия и температуры</h2>
+        <div class="row">
+          <div class="col-4"><label>Длина L, м</label><input type="number" id="len" value="50" min="0" step="0.1"></div>
+          <div class="col-4"><label>Ширина W, м</label><input type="number" id="wid" value="30" min="0" step="0.1"></div>
+          <div class="col-4"><label>Высота H, м</label><input type="number" id="hei" value="8" min="0" step="0.1"></div>
+        </div>
+        <div class="row">
+          <div class="col-6"><div class="badge">Площадь пола: <span id="areaOut">—</span> м²</div></div>
+          <div class="col-6"><div class="badge">Объём здания: <span id="volOut">—</span> м³</div></div>
+        </div>
+        <div class="row">
+          <div class="col-6">
+            <label>Внутренняя температура, °C</label>
+            <input type="number" id="t_in" value="18" step="0.5">
+          </div>
+          <div class="col-6">
+            <label>Наружная температура, °C</label>
+            <input type="number" id="t_out" value="-26" step="0.5">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-6">
+            <label>Воздухообмен (вентиляция, ACH)</label>
+            <select id="ventType">
+              <option value="0">Не учитывать</option>
+              <option value="0.5">0.5 1/ч — минимальный воздухообмен</option>
+              <option value="1.0" selected>1.0 1/ч — стандарт</option>
+              <option value="1.5">1.5 1/ч — производственный</option>
+              <option value="3.0">3.0 1/ч — кухня, прачечная</option>
+            </select>
+          </div>
+          <div class="col-6">
+            <label>Инфильтрация (утечки через ограждения)</label>
+            <select id="infType">
+              <option value="0">Не учитывать</option>
+              <option value="0.2" selected>0.2 м³/ч·м² ограждений (хорошая герметичность)</option>
+              <option value="0.5">0.5 м³/ч·м² (среднее качество)</option>
+              <option value="1.0">1.0 м³/ч·м² (низкая герметичность)</option>
+            </select>
+          </div>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>2) Материалы и слои (λ, Вт/м·К)</h2>
+        <div class="row">
+          <div class="col-6"><label>Материал стен</label><select id="wallMat"></select></div>
+          <div class="col-3"><label>Толщина стены, мм</label><input type="number" id="wallThk" value="200" min="0"></div>
+          <div class="col-3"><label>+ утеплитель, мм</label><input type="number" id="wallIns" value="100" min="0"></div>
+        </div>
+        <div class="row">
+          <div class="col-6"><label>Материал кровли</label><select id="roofMat"></select></div>
+          <div class="col-3"><label>Толщина кровли, мм</label><input type="number" id="roofThk" value="200" min="0"></div>
+          <div class="col-3"><label>+ утеплитель, мм</label><input type="number" id="roofIns" value="0" min="0"></div>
+        </div>
+        <div class="row">
+          <div class="col-6">
+            <label>Пол по грунту</label>
+            <select id="floorMat">
+              <option value="1.4">Бетон по грунту</option>
+              <option value="0.8">Плита ЖБ с утеплением</option>
+              <option value="0.5">Полы с утеплителем (EPS/PIR)</option>
+              <option value="0">Не учитывать</option>
+            </select>
+          </div>
+          <div class="col-3"><label>Толщина пола, мм</label><input type="number" id="floorThk" value="150" min="0"></div>
+          <div class="col-3"><label>+ утеплитель, мм</label><input type="number" id="floorIns" value="50" min="0"></div>
+        </div>
+        <div class="row">
+          <div class="col-6"><label>Окна (U, Вт/м²·К)</label>
+            <select id="winType">
+              <option value="2.8">Одинарное ~2.8</option>
+              <option value="1.6">Двойной пакет ~1.6</option>
+              <option value="1.1" selected>Low-E ~1.1</option>
+              <option value="0.8">Энергоэффективный ~0.8</option>
+            </select>
+          </div>
+          <div class="col-6"><label>Ворота (U, Вт/м²·К)</label>
+            <select id="doorType">
+              <option value="2.5">Металлические ~2.5</option>
+              <option value="1.5" selected>Секционные утеплённые ~1.5</option>
+              <option value="1.0">Энергоэффективные ~1.0</option>
+            </select>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-6"><label>Площадь окон, м²</label><input type="number" id="winArea" value="0" min="0"></div>
+          <div class="col-6"><label>Площадь ворот, м²</label><input type="number" id="doorArea" value="12" min="0"></div>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>3) Итоги</h2>
+        <div class="kpi">
+          <div class="item"><h3>Общие теплопотери</h3><div class="val" id="qTotal">—</div><div class="hint">кВт при ΔT</div></div>
+          <div class="item"><h3>Удельные теплопотери</h3><div class="val" id="qSpec">—</div><div class="hint">Вт/м²</div></div>
+        </div>
+        <div style="height:8px"></div>
+        <table class="u-table" id="parts"><tbody></tbody></table>
+        <div class="notice">Формулы: Q = Σ(U·A·ΔT), U = 1/(Rsi+Σ(d/λ)+Rse). Вентиляция: Qvent=0.33·ACH·V·ΔT. Инфильтрация: Qinf=0.33·q·A<sub>огр</sub>·ΔT.</div>
+      </section>
+
+      <section class="card">
+        <h2>4) Рекомендации</h2>
+        <ul class="rec" id="recs"></ul>
+      </section>
+    </div>
+  </div>
+
+  <script>
+  // ===== ДАННЫЕ МАТЕРИАЛОВ (λ, Вт/м·К) =====
+  const materials = {
+    "Кирпич полнотелый":0.77,
+    "Газобетон (D400)":0.12,
+    "Ж/б бетон":1.70,
+    "Минеральная вата":0.037,
+    "Пенополистирол (EPS)":0.035,
+    "ПИР (PIR)":0.022,
+    "Сэндвич‑панель (PIR)":0.022,
+    "Профнастил/металл":50
+  };
+  const $ = id => document.getElementById(id);
+
+  function fillSelect(id){
+    const el = $(id); if(!el) return;
+    el.innerHTML = '';
+    Object.entries(materials).forEach(([name,lambda])=>{
+      const opt=document.createElement('option');
+      opt.value=lambda;
+      opt.textContent=`${name} (λ=${lambda})`;
+      el.appendChild(opt);
+    });
+    // дефолты
+    if(id==='wallMat') el.value = String(materials["Газобетон (D400)"]); // стеновой материал по умолчанию
+    if(id==='roofMat') el.value = String(materials["Минеральная вата"]); // как основной слой кровли (для простоты)
+  }
+
+  const round=(x,d=1)=> Math.round(x*10**d)/10**d;
+  const fmt=(x,d=0)=> round(x,d).toLocaleString('ru-RU');
+
+  function uFromLayers({lambdaMain,thkMain,lambdaIns,thkIns,type}){
+    const d1=Math.max(0,thkMain)/1000, d2=Math.max(0,thkIns)/1000;
+    const R1=lambdaMain>0? d1/lambdaMain : 0;
+    const R2=lambdaIns>0? d2/lambdaIns : 0;
+    let Rsi=0.13, Rse=0.04; if(type==='roof') Rsi=0.10; if(type==='floor'){Rsi=0.17; Rse=0.00;}
+    const Rt=Rsi+R1+R2+Rse; return Rt>0? 1/Rt : 10;
+  }
+
+  function updateDims(){
+    const L=+($('len').value||0), W=+($('wid').value||0), H=+($('hei').value||0);
+    const Af=L*W, V=L*W*H;
+    $('areaOut').textContent = isFinite(Af)? fmt(Af,1) : '—';
+    $('volOut').textContent  = isFinite(V)? fmt(V,1)  : '—';
+    return {L,W,H,Af,V};
+  }
+
+  function calc(){
+    const {L,W,H,Af,V} = updateDims();
+    const Ar = Af;                   // кровля
+    const P  = 2*(L+W);              // периметр
+    const Awall = P*H;               // площадь наружных стен (полная)
+
+    const Tin=+($('t_in').value||0), Tout=+($('t_out').value||0);
+    const dT = Tin - Tout;
+
+    // Воздух: вентиляция (ACH) и инфильтрация (q м³/ч·м²)
+    const ACH = +($('ventType').value||0);
+    const qinf = +($('infType').value||0);
+
+    // Светопрозрачные/ворота
+    const Awin = +($('winArea').value||0);
+    const Adoor= +($('doorArea').value||0);
+    const Uwin = +($('winType').value||0);
+    const Udoor= +($('doorType').value||0);
+
+    // U ограждений
+    if(!$('wallMat').options.length) fillSelect('wallMat');
+    if(!$('roofMat').options.length) fillSelect('roofMat');
+    const Uwall = uFromLayers({
+      lambdaMain:+($('wallMat').value||0), thkMain:+($('wallThk').value||0),
+      lambdaIns:materials["Минеральная вата"], thkIns:+($('wallIns').value||0), type:'wall'
+    });
+    const Uroof = uFromLayers({
+      lambdaMain:+($('roofMat').value||0), thkMain:+($('roofThk').value||0),
+      lambdaIns:materials["Минеральная вата"], thkIns:+($('roofIns').value||0), type:'roof'
+    });
+    let Ufloor=0; const fsel=$('floorMat').value;
+    if(+fsel>0){
+      Ufloor = uFromLayers({lambdaMain:+fsel, thkMain:+($('floorThk').value||0), lambdaIns:materials["Пенополистирол (EPS)"], thkIns:+($('floorIns').value||0), type:'floor'});
+    }
+
+    const AwallNet = Math.max(0, Awall - Awin - Adoor);
+
+    const parts=[
+      {name:'Стены',A:AwallNet,U:Uwall},
+      {name:'Окна',A:Awin,U:Uwin},
+      {name:'Ворота',A:Adoor,U:Udoor},
+      {name:'Кровля',A:Ar,U:Uroof},
+    ];
+    if(+fsel>0) parts.push({name:'Пол',A:Af,U:Ufloor});
+
+    // Теплопотери через ограждения (Вт)
+    let Qtr=0; parts.forEach(p=>{p.Q = p.U * p.A * dT; Qtr += p.Q;});
+
+    // Две отдельные статьи по воздуху
+    const Qvent = 0.33 * ACH * V * dT;         // вентиляция
+    const Aenv  = Awall + Ar;                   // площадь ограждений для инфильтрации
+    const Qinfil= 0.33 * qinf * Aenv * dT;     // инфильтрация
+
+    const Qtot = Qtr + Qvent + Qinfil;         // суммарно, Вт
+    const qSpec = Af>0 ? Qtot/Af : 0;          // Вт/м²
+
+    // Вывод KPI
+    $('qTotal').textContent = `${fmt(Qtot/1000,1)} кВт`;
+    $('qSpec').textContent  = `${fmt(qSpec,1)} Вт/м²`;
+
+    // Таблица разбиений
+    const tbody = document.querySelector('#parts tbody');
+    if(tbody){
+      tbody.innerHTML='';
+      parts.forEach(p=>{
+        const tr=document.createElement('tr');
+        tr.innerHTML = `<td>${p.name}</td><td>U=${fmt(p.U,2)} • A=${fmt(p.A,1)} м²</td><td>${fmt(p.Q,0)} Вт</td>`;
+        tbody.appendChild(tr);
+      });
+      const trV=document.createElement('tr'); trV.innerHTML=`<td>Вентиляция</td><td>ACH=${ACH} 1/ч • V=${fmt(V,1)} м³</td><td>${fmt(Qvent,0)} Вт</td>`; tbody.appendChild(trV);
+      const trI=document.createElement('tr'); trI.innerHTML=`<td>Инфильтрация</td><td>q=${qinf} м³/ч·м² • Aогр=${fmt(Aenv,1)} м²</td><td>${fmt(Qinfil,0)} Вт</td>`; tbody.appendChild(trI);
+      const trT=document.createElement('tr'); trT.innerHTML=`<td><b>ИТОГО</b></td><td>ΔT=${fmt(dT,1)} °C</td><td><b>${fmt(Qtot/1000,1)} кВт</b> (${fmt(Qtot,0)} Вт)</td>`; tbody.appendChild(trT);
+    }
+
+    // Рекомендации (грубые цели по U и воздуху)
+    const targets={wall:0.35, roof:0.25, floor:0.40, window:1.1, door:1.5, ach:0.8, qinf:0.2};
+    const recUL=$('recs'); if(recUL){
+      const recs=[];
+      recs.push({t:`Стены до U≈${targets.wall}`, s:Math.max(0,(Uwall-targets.wall))*AwallNet*dT});
+      recs.push({t:`Кровля до U≈${targets.roof}`, s:Math.max(0,(Uroof-targets.roof))*Ar*dT});
+      if(+fsel>0) recs.push({t:`Пол до U≈${targets.floor}`, s:Math.max(0,(Ufloor-targets.floor))*Af*dT});
+      recs.push({t:`Окна до U≤${targets.window}`, s:Math.max(0,(Uwin-targets.window))*Awin*dT});
+      recs.push({t:`Ворота до U≤${targets.door}`, s:Math.max(0,(Udoor-targets.door))*Adoor*dT});
+      recs.push({t:`Снизить вентиляцию до ~${targets.ach} 1/ч или применить рекуперацию`, s:Math.max(0,0.33*(ACH-targets.ach))*V*dT});
+      recs.push({t:`Снизить инфильтрацию до q≈${targets.qinf} м³/ч·м²`, s:Math.max(0,0.33*(qinf-targets.qinf))*Aenv*dT});
+      recUL.innerHTML='';
+      recs.filter(r=>r.s>0).sort((a,b)=>b.s-a.s).forEach(r=>{
+        const li=document.createElement('li'); const pct= Qtot>0 ? r.s/Qtot*100 : 0;
+        li.textContent = `${r.t}. Экономия ≈ ${fmt(r.s/1000,1)} кВт (${fmt(pct,1)}%)`;
+        recUL.appendChild(li);
+      });
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', ()=>{
+    fillSelect('wallMat');
+    fillSelect('roofMat');
+    // События вызывают пересчёт
+    [
+      'dealId','specName','specPhone','dealDate',
+      'len','wid','hei','t_in','t_out',
+      'ventType','infType',
+      'wallMat','wallThk','wallIns',
+      'roofMat','roofThk','roofIns',
+      'floorMat','floorThk','floorIns',
+      'winType','doorType','winArea','doorArea'
+    ].forEach(id=>{ const el=$(id); if(el) el.addEventListener('input', calc); });
+
+    // Стартовый пересчёт
+    calc();
+  });
+</script>
 </body>
 </html>
